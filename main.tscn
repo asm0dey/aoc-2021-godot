@@ -1,0 +1,123 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://rect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://FileDialog.cs" type="Script" id=2]
+[ext_resource path="res://Main.cs" type="Script" id=3]
+[ext_resource path="res://Simulation.cs" type="Script" id=4]
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://VT323-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+font_data = SubResource( 4 )
+
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 5 )
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://VT323-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = SubResource( 2 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+Octo = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="FileDialog" type="FileDialog" parent="Panel"]
+margin_left = 337.0
+margin_top = 197.0
+margin_right = 1470.0
+margin_bottom = 847.0
+rect_min_size = Vector2( 400, 140 )
+theme = SubResource( 6 )
+window_title = "Open a File"
+resizable = true
+dialog_hide_on_ok = true
+mode = 0
+access = 2
+current_dir = "/home/finkel/work_self/aoc-2021-godot/day11"
+current_file = "Day 11.csproj"
+current_path = "/home/finkel/work_self/aoc-2021-godot/day11/Day 11.csproj"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Select File" type="Button" parent="Panel"]
+margin_left = 30.0
+margin_top = 45.0
+margin_right = 333.0
+margin_bottom = 110.0
+rect_pivot_offset = Vector2( 237, 45 )
+theme = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Select file"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Simulate Step" type="Button" parent="Panel"]
+visible = false
+margin_left = 386.0
+margin_top = 45.0
+margin_right = 689.0
+margin_bottom = 114.0
+rect_pivot_offset = Vector2( 237, 45 )
+theme = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Simulate step"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Simulation StartStop" type="Button" parent="Panel"]
+visible = false
+margin_left = 741.0
+margin_top = 45.0
+margin_right = 1044.0
+margin_bottom = 113.0
+rect_pivot_offset = Vector2( 237, 45 )
+theme = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
+toggle_mode = true
+action_mode = 0
+text = "Start/Stop"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Grid" type="GridContainer" parent="Panel"]
+margin_left = 30.0
+margin_top = 150.0
+margin_right = 930.0
+margin_bottom = 1050.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 900, 900 )
+columns = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Panel"]
+wait_time = 0.05
+
+[connection signal="file_selected" from="Panel/FileDialog" to="Panel/FileDialog" method="_on_FileDialog_file_selected"]
+[connection signal="pressed" from="Panel/Select File" to="Panel/FileDialog" method="_on_Button_pressed"]
+[connection signal="pressed" from="Panel/Simulate Step" to="." method="_Step"]
+[connection signal="toggled" from="Panel/Simulation StartStop" to="Panel/Simulation StartStop" method="_toggle"]
+[connection signal="timeout" from="Panel/Timer" to="." method="_Step"]

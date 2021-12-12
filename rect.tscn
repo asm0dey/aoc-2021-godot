@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Octo.cs" type="Script" id=1]
+
+[node name="Octo" type="ColorRect"]
+margin_right = 90.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+color = Color( 0.662745, 0.164706, 0.164706, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
