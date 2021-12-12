@@ -1,9 +1,8 @@
-using Godot;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Day11;
+using Godot;
 
 public class Main : Node2D
 {

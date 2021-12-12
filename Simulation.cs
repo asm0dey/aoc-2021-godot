@@ -1,6 +1,5 @@
-using Godot;
-using System;
 using System.Diagnostics.CodeAnalysis;
+using Godot;
 
 [SuppressMessage("ReSharper", "UnusedType.Global")]
 public class Simulation : Button
