@@ -17,6 +17,7 @@ jobs:
       - name: Setup
         run: |
           mkdir -v -p build/linux build/windows build/mac build/web ~/.local/share/godot/templates
+          ls -lah /root/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Windows Build
         run: godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
