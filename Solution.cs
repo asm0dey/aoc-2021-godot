@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,14 +5,14 @@ namespace Day11
 {
     public class Solution
     {
+        public delegate void PositionColorCallback((int x, int y) position, int color);
+
         private readonly Dictionary<(int x, int y), int> _energy;
 
         public Solution(Dictionary<(int x, int y), int> energy)
         {
             _energy = energy;
         }
-
-        public delegate void PositionColorCallback((int x, int y) position, int color);
 
         public int Step(PositionColorCallback func)
         {
@@ -26,7 +25,7 @@ namespace Day11
             return _energy.Keys.ToList().Sum(pos => Flash(_energy, pos, func));
         }
 
-        private int Flash(IDictionary<(int x, int y), int> energy, (int x, int y) pos,
+        private static int Flash(IDictionary<(int x, int y), int> energy, (int x, int y) pos,
             PositionColorCallback func)
         {
             if (energy[pos] <= 9) return 0;
